@@ -1,4 +1,7 @@
-class Menu(private val options: MutableList<MenuOption>) {
+class Menu(val options: MutableList<MenuOption>) {
+    init {
+        options.add(MenuOption("Выход") { })
+    }
     fun addOption(name: String, action: () -> Unit) {
         options.add(MenuOption(name, action))
     }
@@ -7,20 +10,16 @@ class Menu(private val options: MutableList<MenuOption>) {
         for ((index, option) in options.withIndex()) {
             println("$index. ${option.name}")
         }
-        println("${options.size}. Выход")
     }
 
     fun handleInput(): Boolean {
         val input = readLine() ?: ""
         val choice = input.toIntOrNull()
-        if (choice == null || choice !in 0 until options.size + 1) {
-            println("Пожалуйста, введите число от 0 до ${options.size}.")
+        if (choice == null || choice !in 0 until options.size) {
+            println("Пожалуйста, введите число от 0 до ${options.size-1}.")
             return false
         }
-        if (choice == options.size) {
-            return true
-        }
         options[choice].action()
-        return false
+        return options[choice].name == "Выход"
     }
 }

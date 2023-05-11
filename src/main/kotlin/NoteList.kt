@@ -13,8 +13,8 @@ class NoteList(val name: String) {
             println("Список заметок пуст.")
         } else {
             println("Список заметок в архиве \"$name\":")
-            for ((index, note) in notes.withIndex()) {
-                println("$index. $note")
+            for (note in notes) {
+                println(note)
             }
         }
     }

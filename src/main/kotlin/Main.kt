@@ -6,7 +6,6 @@ fun main() {
     mainMenu.addOption("Просмотреть архивы") { archiveList.viewArchives() }
     mainMenu.addOption("Добавить заметку в архив") { archiveList.addNoteToArchive() }
     mainMenu.addOption("Просмотреть заметки в архиве") { archiveList.viewNotesInArchive() }
-    mainMenu.addOption("Выход") { }
 
     while (true) {
         mainMenu.print()
